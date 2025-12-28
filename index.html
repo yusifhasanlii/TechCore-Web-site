@@ -10,8 +10,8 @@
         :root {
             --bg-dark: #0f172a;
             --bg-card: #1e293b;
-            --primary: #10b981; /* Neon Green/Emerald */
-            --secondary: #3b82f6; /* Blue */
+            --primary: #10b981; 
+            --secondary: #3b82f6; 
             --text-light: #f1f5f9;
             --text-gray: #94a3b8;
             --gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
@@ -49,6 +49,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            white-space: nowrap; /* Düymənin mətni qırılmasın */
         }
 
         .btn-primary {
@@ -83,7 +84,7 @@
             top: 0;
             width: 100%;
             padding: 20px 0;
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.95); /* Bir az daha tünd */
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -105,7 +106,6 @@
             gap: 10px;
         }
 
-        /* Yeni Naviqasiya Stili */
         .nav-links {
             display: flex;
             gap: 30px;
@@ -134,7 +134,6 @@
             position: relative;
         }
 
-        /* Background Glow Effect */
         .hero::after {
             content: '';
             position: absolute;
@@ -186,7 +185,7 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* --- Problem & Solution (Images) --- */
+        /* --- Problem & Solution --- */
         .showcase {
             padding: 100px 0;
         }
@@ -200,7 +199,7 @@
         }
 
         .showcase-grid.reverse {
-            direction: rtl; /* For alternating layout */
+            direction: rtl;
         }
         
         .showcase-grid.reverse .showcase-text {
@@ -212,11 +211,6 @@
             border-radius: 15px;
             opacity: 0.8;
             transition: 0.3s;
-        }
-
-        .showcase-img img:hover {
-            opacity: 1;
-            transform: scale(1.02);
         }
 
         .showcase-text h3 {
@@ -241,7 +235,7 @@
             color: var(--primary);
         }
 
-        /* --- TEAM SECTION (Redesigned) --- */
+        /* --- TEAM SECTION --- */
         .team {
             background: #0b1120;
             padding: 100px 0;
@@ -341,7 +335,6 @@
             font-size: 0.9rem;
         }
 
-        /* --- Footer --- */
         footer {
             padding: 50px 0;
             text-align: center;
@@ -349,13 +342,71 @@
             background: #0f172a;
         }
 
+        /* --- MOBILE RESPONSIVE FIXES --- */
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .hero-content { padding-right: 0; margin-bottom: 50px; }
-            .hero h1 { font-size: 2.5rem; }
-            .showcase-grid { grid-template-columns: 1fr; gap: 30px; }
-            .showcase-grid.reverse { direction: ltr; }
-            .nav-links { display: none; } /* Mobileda menyunu gizlət */
+            /* Navbar */
+            .nav-links { display: none; } /* Linkləri telefonda gizlət */
+            
+            .logo {
+                font-size: 1.2rem; /* Logonun şriftini biraz kiçilt */
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Hero */
+            .hero { 
+                flex-direction: column; 
+                text-align: center; 
+                padding-top: 110px; /* Header-in altından çıxması üçün */
+                padding-bottom: 50px;
+            }
+            
+            .hero-content { 
+                padding-right: 0; 
+                margin-bottom: 40px; 
+                width: 100%;
+            }
+            
+            .hero h1 { 
+                font-size: 2.2rem; /* Başlığı kiçilt */
+            }
+            
+            .hero p {
+                margin: 0 auto 30px auto; /* Mərkəzləşdir */
+            }
+
+            /* Problem & Solution Grid */
+            .showcase-grid { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            
+            /* Reverse hissəni telefonda düzəltmək */
+            .showcase-grid.reverse { 
+                direction: ltr; /* Normal istiqamətə qaytar */
+            }
+            
+            .showcase-img {
+                order: 1; /* Şəkil həmişə üstdə olsun */
+            }
+            
+            .showcase-text {
+                order: 2; /* Yazı şəkildən sonra gəlsin */
+            }
+
+            /* Section Titles */
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            /* Team Cards */
+            .team-grid {
+                grid-template-columns: 1fr; /* Telefonda tək sütun */
+                padding: 0 10px;
+            }
         }
     </style>
 </head>
@@ -381,7 +432,7 @@
 
     <section id="home" class="hero">
         <div class="container">
-            <div style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <div class="hero-content">
                     <span style="color: var(--primary); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">Qarabağ Universiteti</span>
                     <h1>İnventarınızı <br><span style="color: var(--primary);">Ağıllı Texnologiya</span> ilə İdarə Edin</h1>
